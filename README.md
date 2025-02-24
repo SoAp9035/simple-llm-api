@@ -47,9 +47,9 @@ response = gemini.simple_request("Hi!")
 print(response)
 ```
 
-## Advanced Usage
+## Easy Advanced Usage
 
-Each API wrapper supports various parameters for fine-tuning the response:
+Each API wrapper supports various parameters for customizing the response:
 
 ### OpenAI
 ```python
