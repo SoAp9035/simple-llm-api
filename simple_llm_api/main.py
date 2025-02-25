@@ -88,37 +88,6 @@ class AnthropicAPI:
                 raise AnthropicError(f"Error {response.status_code} - {error_msg}")
 
 
-class MistralAPI:
-    def __init__(self, api_key: str = "YOUR_API_KEY", model: str = "mistral-large-latest") -> None:
-        self._headers = {"Authorization": f"Bearer {api_key}"}
-        self._model = model
-
-    def simple_request(self, user_prompt: str, system_prompt: str = "You are a helpful assistant.", temperature: float = 0.7, top_p: float = 1, max_tokens: int = 2048) -> str:
-        self.mistral_endpoint = f"https://api.mistral.ai/v1/chat/completions"
-
-        data = {
-            "model": self._model,
-            "temperature": temperature,
-            "top_p": top_p,
-            "max_tokens": max_tokens,
-            "messages": [
-                {"role": "system", "content": system_prompt},
-                {"role": "user", "content": user_prompt}
-            ],
-        }
-
-        response = requests.post(self.mistral_endpoint, json=data, headers=self._headers)
-        if response.status_code == 200:
-            return response.json()["choices"][0]["message"]["content"]
-        else:
-            try:
-                error_msg = response.json()["detail"][0]["msg"]
-            except Exception:
-                error_msg = response.text
-            finally:
-                raise MistralError(f"Error {response.status_code} - {error_msg}")
-
-
 class GeminiAPI:
     def __init__(self, api_key: str = "YOUR_API_KEY", model: str = "gemini-2.0-flash") -> None:
         self._parameters = {"key": api_key}
@@ -149,3 +118,34 @@ class GeminiAPI:
                 error_msg = response.text
             finally:
                 raise GeminiError(f"Error {response.status_code} - {error_msg}")
+
+
+class MistralAPI:
+    def __init__(self, api_key: str = "YOUR_API_KEY", model: str = "mistral-large-latest") -> None:
+        self._headers = {"Authorization": f"Bearer {api_key}"}
+        self._model = model
+
+    def simple_request(self, user_prompt: str, system_prompt: str = "You are a helpful assistant.", temperature: float = 0.7, top_p: float = 1, max_tokens: int = 2048) -> str:
+        self.mistral_endpoint = f"https://api.mistral.ai/v1/chat/completions"
+
+        data = {
+            "model": self._model,
+            "temperature": temperature,
+            "top_p": top_p,
+            "max_tokens": max_tokens,
+            "messages": [
+                {"role": "system", "content": system_prompt},
+                {"role": "user", "content": user_prompt}
+            ],
+        }
+
+        response = requests.post(self.mistral_endpoint, json=data, headers=self._headers)
+        if response.status_code == 200:
+            return response.json()["choices"][0]["message"]["content"]
+        else:
+            try:
+                error_msg = response.json()["detail"][0]["msg"]
+            except Exception:
+                error_msg = response.text
+            finally:
+                raise MistralError(f"Error {response.status_code} - {error_msg}")
