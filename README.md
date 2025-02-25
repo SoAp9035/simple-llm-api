@@ -1,6 +1,6 @@
 # Simple LLM API
 
-A simple and easy-to-use Python wrapper for popular LLM APIs (OpenAI, Mistral, Google Gemini).
+A simple and easy-to-use Python wrapper for popular LLM APIs (OpenAI, Anthropic, Google Gemini, Mistral).
 
 ## Installation
 
@@ -11,7 +11,7 @@ pip install simple-llm-api
 ## Features
 
 - 🎯 Simple and consistent interface for multiple LLM providers
-- 🤖 Support for OpenAI, Mistral, and Google Gemini APIs
+- 🤖 Support for OpenAI, Anthropic, Google Gemini, and Mistral APIs
 - 🚀 Easy to use with minimal configuration
 - ⚙️ Customizable parameters for each provider
 
@@ -27,13 +27,13 @@ response = openai.simple_request("Hi!")
 print(response)
 ```
 
-### Mistral
+### Anthropic
 
 ```python
-from simple_llm_api import MistralAPI
+from simple_llm_api import OpenAIAPI
 
-mistral = MistralAPI("YOUR_API_KEY")
-response = mistral.simple_request("Hi!")
+anthropic = AnthropicAPI("YOUR_API_KEY")
+response = anthropic.simple_request("Hi!")
 print(response)
 ```
 
@@ -47,6 +47,16 @@ response = gemini.simple_request("Hi!")
 print(response)
 ```
 
+### Mistral
+
+```python
+from simple_llm_api import MistralAPI
+
+mistral = MistralAPI("YOUR_API_KEY")
+response = mistral.simple_request("Hi!")
+print(response)
+```
+
 ## Easy Advanced Usage
 
 Each API wrapper supports various parameters for customizing the response:
@@ -56,19 +66,18 @@ Each API wrapper supports various parameters for customizing the response:
 openai.simple_request(
     user_prompt="Your prompt here",
     system_prompt="Custom system prompt",
-    temperature=0.7,
-    top_p=0.9,
+    temperature=1,
+    top_p=1,
     max_completion_tokens=2048
 )
 ```
 
-### Mistral
+### Anthropic
 ```python
-mistral.simple_request(
+anthropic.simple_request(
     user_prompt="Your prompt here",
     system_prompt="Custom system prompt",
-    temperature=0.7,
-    top_p=0.9,
+    temperature=1,
     max_tokens=2048
 )
 ```
@@ -78,10 +87,21 @@ mistral.simple_request(
 gemini.simple_request(
     user_prompt="Your prompt here",
     system_prompt="Custom system prompt",
-    temperature=0.7,
+    temperature=1,
     top_k=40,
-    top_p=0.9,
+    top_p=0.95,
     max_output_tokens=2048
+)
+```
+
+### Mistral
+```python
+mistral.simple_request(
+    user_prompt="Your prompt here",
+    system_prompt="Custom system prompt",
+    temperature=0.7,
+    top_p=1,
+    max_tokens=2048
 )
 ```
 
@@ -89,13 +109,14 @@ gemini.simple_request(
 
 The library includes custom exceptions for each API:
 
+- `OpenAIError`: OpenAIAPI Error
+- `AnthropicError`: AnthropicAPI Error
 - `GeminiError`: GeminiAPI Error
-- `MistralError`: MistralError Error
-- `OpenAIError`: OpenAIError Error
+- `MistralError`: MistralAPI Error
 
 ## Requirements
 
-- requests
+- requests>=2.32.3
 
 ## License
 
