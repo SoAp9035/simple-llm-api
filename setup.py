@@ -3,10 +3,10 @@ from setuptools import setup, find_packages
 
 setup(
     name="simple-llm-api",
-    version="1.0.1",
+    version="1.1.0",
     packages=find_packages(),
     install_requires=[
-        "requests"
+        "requests>=2.32.3"
     ],
     author="Ahmet Burhan Kayalı",
     author_email="ahmetburhan1703@gmail.com",
@@ -23,5 +23,5 @@ setup(
 
         "License :: OSI Approved :: MIT License",
     ],
-    keywords=["simple", "llm", "openai", "mistral", "gemini", "api", "wrapper"]
+    keywords=["simple", "llm", "openai", "anthropic", "gemini", "mistral", "api", "wrapper"]
 )
