@@ -3,8 +3,10 @@ from .main import (
     AnthropicAPI,
     GeminiAPI,
     MistralAPI,
+    DeepSeekAPI,
     OpenAIError,
     AnthropicError,
     GeminiError,
-    MistralError
+    MistralError,
+    DeepSeekError
 )
