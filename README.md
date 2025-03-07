@@ -1,6 +1,6 @@
 # Simple LLM API
 
-A simple and easy-to-use Python wrapper for popular LLM APIs (OpenAI, Anthropic, Google Gemini, Mistral).
+A simple and easy-to-use Python wrapper for popular LLM APIs (OpenAI, Anthropic, and more).
 
 ## Installation
 
@@ -11,7 +11,7 @@ pip install simple-llm-api
 ## Features
 
 - 🎯 Simple and consistent interface for multiple LLM providers
-- 🤖 Support for OpenAI, Anthropic, Google Gemini, and Mistral APIs
+- 🤖 Support for OpenAI, Anthropic, Google Gemini, Mistral, and DeepSeek APIs
 - 🚀 Easy to use with minimal configuration
 - ⚙️ Customizable parameters for each provider
 
@@ -54,6 +54,16 @@ from simple_llm_api import MistralAPI
 
 mistral = MistralAPI("YOUR_API_KEY")
 response = mistral.simple_request("Hi!")
+print(response)
+```
+
+### DeepSeek
+
+```python
+from simple_llm_api import DeepSeekAPI
+
+deepseek = DeepSeekAPI("YOUR_API_KEY")
+response = deepseek.simple_request("Hi!")
 print(response)
 ```
 
@@ -105,6 +115,17 @@ mistral.simple_request(
 )
 ```
 
+### DeepSeek
+```python
+deepseek.simple_request(
+    user_prompt="Your prompt here",
+    system_prompt="Custom system prompt",
+    temperature=1,
+    top_p=1,
+    max_tokens=2048
+)
+```
+
 ## Error Handling
 
 The library includes custom exceptions for each API:
@@ -113,6 +134,7 @@ The library includes custom exceptions for each API:
 - `AnthropicError`: AnthropicAPI Error
 - `GeminiError`: GeminiAPI Error
 - `MistralError`: MistralAPI Error
+- `DeepSeekError`: DeepSeekAPI Error
 
 ## Requirements
 
