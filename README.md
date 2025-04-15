@@ -140,6 +140,16 @@ The library includes custom exceptions for each API:
 
 - requests>=2.32.3
 
+## Disclaimer
+
+This software is provided "as is" without any warranty. The authors are not responsible for any problems that may happen when you use this software.
+
+This library connects to third-party LLM APIs (OpenAI, Anthropic, Google Gemini, Mistral, and DeepSeek). You must follow the rules of these APIs and manage any costs yourself.
+
+You are responsible for how you use this software and what you do with it.
+
+Using this software means you accept these terms.
+
 ## License
 
 This project is licensed under the [MIT](https://choosealicense.com/licenses/mit/) License.
@@ -148,3 +158,4 @@ This project is licensed under the [MIT](https://choosealicense.com/licenses/mit
 
 - [GitHub Repository](https://github.com/SoAp9035/simple-llm-api)
 - [PyPI Package](https://pypi.org/project/simple-llm-api/)
+- [Buy Me a Coffee](https://buymeacoffee.com/soap9035/)
