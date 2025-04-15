@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools>=78.1"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "simple-llm-api"
+version = "1.2.1"
+authors = [
+    {name = "Ahmet Burhan Kayalı", email = "ahmetburhan1703@gmail.com"},
+]
+description = "A simple and easy-to-use LLM API Wrapper"
+readme = "README.md"
+classifiers = [
+    "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Internet :: WWW/HTTP",
+    "License :: OSI Approved :: MIT License",
+]
+keywords = ["simple", "llm", "openai", "anthropic", "gemini", "mistral", "deepseek", "api", "wrapper"]
+dependencies = [
+    "requests>=2.32.3"
+]
+
+[project.urls]
+"Homepage" = "https://github.com/SoAp9035/simple-llm-api"
+"Bug Tracker" = "https://github.com/SoAp9035/simple-llm-api/issues"
