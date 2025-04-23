@@ -136,7 +136,6 @@ class GeminiAPI:
 
         data = {
             "contents": [{"role": "user", "parts": [{"text": user_prompt}]}],
-            "systemInstruction": {"parts": [{"text": system_prompt}]},
             "generationConfig": {
                 "temperature": temperature,
                 "topK": top_k,
@@ -145,6 +144,11 @@ class GeminiAPI:
                 "responseMimeType": "text/plain",
             },
         }
+
+        if self._model.startswith("gemma"):
+            data["contents"][0]["parts"] = [{"text": system_prompt}] + data["contents"][0]["parts"]
+        else:
+            data["systemInstruction"] = {"parts": [{"text": system_prompt}]}
 
         response = requests.post(self._gemini_endpoint, json=data, params=self._parameters)
         if response.status_code == 200:
