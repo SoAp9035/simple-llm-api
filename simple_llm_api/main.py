@@ -12,6 +12,7 @@ class OpenAIAPI:
     def __init__(self, api_key: str = "YOUR_API_KEY", model: str = "gpt-4o") -> None:
         self._model = model
         self._headers = {"Authorization": f"Bearer {api_key}"}
+        self._openai_endpoint = "https://api.openai.com/v1/chat/completions"
 
     def simple_request(self, user_prompt: str, system_prompt: str = "You are a helpful assistant.", temperature: float = 1, top_p: float = 1, max_completion_tokens: int = 2048) -> str:
         """
@@ -31,9 +32,6 @@ class OpenAIAPI:
         Raises:
             OpenAIError: If the API request fails or returns an error status code.
         """
-        
-        self._openai_endpoint = "https://api.openai.com/v1/chat/completions"
-
         data = {
             "model": self._model,
             "temperature": temperature,
@@ -69,6 +67,7 @@ class AnthropicAPI:
             "x-api-key": f"{api_key}",
             "anthropic-version": "2023-06-01"
         }
+        self._anthropic_endpoint = "https://api.anthropic.com/v1/messages"
 
     def simple_request(self, user_prompt: str, system_prompt: str = "You are a helpful assistant.", temperature: float = 1, max_tokens: int = 2048) -> str:
         """
@@ -86,9 +85,6 @@ class AnthropicAPI:
         Raises:
             AnthropicError: If the API request fails or returns an error status code.
         """
-
-        self._anthropic_endpoint = "https://api.anthropic.com/v1/messages"
-
         data = {
             "model": self._model,
             "max_tokens": max_tokens,
@@ -114,6 +110,7 @@ class GeminiAPI:
     def __init__(self, api_key: str = "YOUR_API_KEY", model: str = "gemini-2.0-flash") -> None:
         self._model = model
         self._parameters = {"key": api_key}
+        self._gemini_endpoint = f"https://generativelanguage.googleapis.com/v1beta/models/{self._model}:generateContent"
 
     def simple_request(self, user_prompt: str, system_prompt: str = "You are a helpful assistant.", temperature: float = 1, top_k: int = 40, top_p: float = 0.95, max_output_tokens: int = 2048) -> str:
         """
@@ -135,12 +132,11 @@ class GeminiAPI:
         Raises:
             GeminiError: If the API request fails or returns an error status code.
         """
-
         self._gemini_endpoint = f"https://generativelanguage.googleapis.com/v1beta/models/{self._model}:generateContent"
 
         data = {
             "contents": [{"role": "user", "parts": [{"text": user_prompt}]}],
-            "systemInstruction": {"role": "user", "parts": [{"text": system_prompt}]},
+            "systemInstruction": {"parts": [{"text": system_prompt}]},
             "generationConfig": {
                 "temperature": temperature,
                 "topK": top_k,
@@ -165,6 +161,7 @@ class MistralAPI:
     def __init__(self, api_key: str = "YOUR_API_KEY", model: str = "mistral-large-latest") -> None:
         self._model = model
         self._headers = {"Authorization": f"Bearer {api_key}"}
+        self._mistral_endpoint = "https://api.mistral.ai/v1/chat/completions"
 
     def simple_request(self, user_prompt: str, system_prompt: str = "You are a helpful assistant.", temperature: float = 0.7, top_p: float = 1, max_tokens: int = 2048) -> str:
         """
@@ -184,9 +181,6 @@ class MistralAPI:
         Raises:
             MistralError: If the API request fails or returns an error status code.
         """
-        
-        self._mistral_endpoint = "https://api.mistral.ai/v1/chat/completions"
-
         data = {
             "model": self._model,
             "temperature": temperature,
@@ -213,6 +207,7 @@ class DeepSeekAPI:
     def __init__(self, api_key: str = "YOUR_API_KEY", model: str = "deepseek-chat") -> None:
         self._model = model
         self._headers = {"Authorization": f"Bearer {api_key}"}
+        self._deepseek_endpoint = "https://api.deepseek.com/chat/completions"
 
     def simple_request(self, user_prompt: str, system_prompt: str = "You are a helpful assistant.", temperature: float = 1, top_p: float = 1, max_tokens: int = 2048) -> str:
         """
@@ -232,9 +227,6 @@ class DeepSeekAPI:
         Raises:
             DeepSeekError: If the API request fails or returns an error status code.
         """
-        
-        self._deepseek_endpoint = "https://api.deepseek.com/chat/completions"
-
         data = {
             "model": "deepseek-chat",
             "messages": [
