@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "simple-llm-api"
-version = "1.2.1"
+version = "1.3.0"
 authors = [
     {name = "Ahmet Burhan Kayalı", email = "ahmetburhan1703@gmail.com"},
 ]
