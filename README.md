@@ -11,7 +11,8 @@ pip install simple-llm-api
 ## Features
 
 - 🎯 Simple and consistent interface for multiple LLM providers
-- 🤖 Support for OpenAI, Anthropic, Google Gemini, Mistral, and DeepSeek APIs
+- 🤖 Support for OpenAI, Anthropic, Google Gemini, Mistral, DeepSeek, and local LLMs
+- 🏠 Local LLM support (run locally hosted models on your own machine)
 - 🚀 Easy to use with minimal configuration
 - ⚙️ Customizable parameters for each provider
 
@@ -64,6 +65,19 @@ from simple_llm_api import DeepSeekAPI
 
 deepseek = DeepSeekAPI("YOUR_API_KEY")
 response = deepseek.simple_request("Hi!")
+print(response)
+```
+
+### Local LLMs
+
+Use locally hosted models on your computer that work like OpenAI's API (like LM Studio or Ollama).
+
+```python
+from simple_llm_api import OpenAIAPI
+
+openai = OpenAIAPI(model="MODEL_NAME")
+openai._openai_endpoint = "http://localhost:8080/v1/chat/completions"
+response = openai.simple_request("Hi!")
 print(response)
 ```
 
